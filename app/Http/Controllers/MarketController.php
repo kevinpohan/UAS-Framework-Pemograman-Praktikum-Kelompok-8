@@ -133,14 +133,6 @@ class MarketController extends Controller
         return redirect()->route('portfolio.index')->with('success', 'Stock purchased successfully!');
     }
 
-    // Method uji coba Market Movers API
-    public function testMarketMoversApi()
-    {
-        $marketMovers = $this->priceService->getMarketMovers();
-
-        // Kembalikan hasilnya dalam format JSON
-        return response()->json($marketMovers);
-    }
 
     // Method untuk jual saham
     public function sell(Request $request, Stock $stock)
