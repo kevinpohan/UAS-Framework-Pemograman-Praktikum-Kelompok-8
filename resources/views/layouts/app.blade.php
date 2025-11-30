@@ -78,6 +78,11 @@
                     <a href="{{ route('market.index') }}" class="hover:text-primary transition-colors {{ request()->routeIs('market.*') ? 'text-primary' : '' }}">Market</a>
                     <a href="{{ route('portfolio.index') }}" class="hover:text-primary transition-colors {{ request()->routeIs('portfolio.*') ? 'text-primary' : '' }}">Portfolio</a>
                     <a href="{{ route('transactions.index') }}" class="hover:text-primary transition-colors {{ request()->routeIs('transactions.*') ? 'text-primary' : '' }}">Transactions</a>
+                    <a href="{{ route('forecast.index') }}"
+                        class="hover:text-primary transition-colors {{ request()->routeIs('forecast.*') ? 'text-primary' : '' }}">
+                        Forecasting
+                    </a>
+
                     @endif
                     @endauth
                 </div>
