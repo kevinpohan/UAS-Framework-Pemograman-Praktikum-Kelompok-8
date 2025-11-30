@@ -45,7 +45,7 @@
             <input
                 type="text"
                 x-model="searchQuery"
-                placeholder="Cari saham apa saja..."
+                placeholder="Cari saham"
                 class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 w-64" />
         </div>
 

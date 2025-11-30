@@ -75,7 +75,7 @@ class MarketController extends Controller
 
         $quantity = $request->quantity;
         $priceData = $this->priceService->getCurrentPrice($stock->symbol);
-        $currentPrice = $priceData['current_price'] ?? null; // Ambil nilai numerik 'current_price'
+        $currentPrice = $priceData['current_price'] ?? null;
 
         if (!$currentPrice) {
             return back()->with('error', 'Could not fetch current price for this stock.');
@@ -122,7 +122,6 @@ class MarketController extends Controller
         return redirect()->route('portfolio.index')->with('success', 'Stock purchased successfully!');
     }
 
-    // 🔥 Method baru untuk jual saham
     public function sell(Request $request, Stock $stock)
     {
         $request->validate([
@@ -131,9 +130,8 @@ class MarketController extends Controller
 
         $quantity = $request->quantity;
 
-        // 🔥 PERBAIKAN: EKSTRAKSI HARGA DARI ARRAY SEBELUM DIGUNAKAN DI PERKALIAN
         $priceData = $this->priceService->getCurrentPrice($stock->symbol);
-        $currentPrice = $priceData['current_price'] ?? null; // Ambil nilai numerik 'current_price'
+        $currentPrice = $priceData['current_price'] ?? null;
 
         if (!$currentPrice) {
             return back()->with('error', 'Could not fetch current price for this stock.');
@@ -149,7 +147,7 @@ class MarketController extends Controller
             return back()->with('error', 'Insufficient shares to complete this sale.');
         }
 
-        $total = $quantity * $currentPrice; // Baris ini sekarang aman (number * number)
+        $total = $quantity * $currentPrice;
 
         DB::transaction(function () use ($user, $stock, $quantity, $currentPrice, $total, $portfolio) {
             // Create transaction
