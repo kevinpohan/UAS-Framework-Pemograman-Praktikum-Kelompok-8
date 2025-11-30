@@ -10,21 +10,10 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $sort = $request->input('sort', 'created_at');
-        $direction = $request->input('direction', 'desc');
-
-        $allowedSorts = ['name', 'email', 'role', 'balance', 'created_at'];
-        if (!in_array($sort, $allowedSorts)) {
-            $sort = 'created_at';
-        }
-        $direction = $direction === 'asc' ? 'asc' : 'desc';
-
-        $users = User::orderBy($sort, $direction)->paginate(15)
-            ->appends(['sort' => $sort, 'direction' => $direction]);
-
-        return view('admin.users.index', compact('users', 'sort', 'direction'));
+        $users = User::orderBy('created_at', 'desc')->paginate(15);
+        return view('admin.users.index', compact('users'));
     }
 
     public function create()
@@ -60,13 +49,11 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
-            'role' => 'required|in:user,admin',
         ]);
 
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
-            'role' => $request->role,
         ]);
 
         return redirect()->route('admin.users.index')->with('success', 'User updated successfully.');
