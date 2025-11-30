@@ -95,3 +95,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 });
 
 Route::get('/api/stock/{symbol}/chart', [StockController::class, 'getChart'])->name('api.stock.chart');
+
+Route::get('/forecast', function () {
+    return view('forecast');
+})->name('forecast.index');
+
+Route::get('/forecast/{symbol}', [StockController::class, 'forecast']);
