@@ -13,6 +13,7 @@ use App\Models\Stock;
 use App\Services\StockPriceService;
 use App\Http\Controllers\Api\StockController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\GoogleController;
 
 // Public routes
 Route::get('/', function () {
@@ -101,3 +102,6 @@ Route::get('/forecast', function () {
 })->name('forecast.index');
 
 Route::get('/forecast/{symbol}', [StockController::class, 'forecast']);
+
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
