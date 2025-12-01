@@ -29,7 +29,7 @@
                 </div>
             </form>
 
-            <div class="mt-8">
+            <!-- <div class="mt-8">
                 <h3 class="text-xl font-bold mb-4">Reset Password</h3>
                 <form method="POST" action="{{ route('admin.users.reset-password', $user) }}">
                     @csrf
@@ -47,7 +47,7 @@
                         <i class="fas fa-key mr-2"></i>Reset Password
                     </button>
                 </form>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
