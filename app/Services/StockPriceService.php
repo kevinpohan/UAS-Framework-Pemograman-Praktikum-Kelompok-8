@@ -161,8 +161,7 @@ class StockPriceService
         $interval = $intervalMap[$resolution] ?? '1min';
 
         $dateTo = $to ? date('Y-m-d H:i:s', $to) : now()->format('Y-m-d H:i:s');
-        // Rentang waktu diperluas dari 6 jam menjadi 48 jam
-        $dateFrom = $from ? date('Y-m-d H:i:s', $from) : now()->subHours(48)->format('Y-m-d H:i:s');
+        $dateFrom = $from ? date('Y-m-d H:i:s', $from) : now()->subDays(5)->format('Y-m-d H:i:s');
 
         $response = Http::get($this->twelveDataBaseUrl . '/time_series', [
             'symbol' => $symbol,

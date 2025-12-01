@@ -40,14 +40,20 @@
                         <h3 class="text-xl font-bold mb-4">Change Password</h3>
                         <form method="POST" action="{{ route('profile.password') }}">
                             @csrf
-                            <div class="mb-4">
+                            @method('PUT') <div class="mb-4">
                                 <label class="block text-sm font-medium mb-2">Current Password</label>
                                 <input type="password" name="current_password" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3" required>
+                                @error('current_password')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
                             </div>
 
                             <div class="mb-4">
                                 <label class="block text-sm font-medium mb-2">New Password</label>
                                 <input type="password" name="new_password" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3" required>
+                                @error('new_password')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
                             </div>
 
                             <div class="mb-6">
