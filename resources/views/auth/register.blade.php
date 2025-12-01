@@ -51,6 +51,20 @@
                 </button>
             </form>
 
+            <!-- OR divider -->
+            <div class="flex items-center my-6">
+                <hr class="flex-grow border-gray-600">
+                <span class="px-4 text-gray-400 text-sm">OR</span>
+                <hr class="flex-grow border-gray-600">
+            </div>
+
+            <a href="{{ route('google.login') }}"
+                class="flex items-center justify-center w-full bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg px-4 py-3 transition-colors shadow-md">
+                <i class="fab fa-google w-5 h-5 mr-3"></i>
+
+                Sign in with Google
+            </a>
+
             <div class="mt-6 text-center">
                 <p class="text-gray-400 text-sm">
                     Already have an account?
