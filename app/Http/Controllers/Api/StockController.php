@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Services\StockPriceService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class StockController extends Controller
 {
@@ -34,5 +35,18 @@ class StockController extends Controller
                 'error' => 'Failed to fetch real chart data. Check API key and subscription permissions.',
             ]);
         }
+    }
+
+    public function forecast($symbol)
+    {
+        $url = "http://127.0.0.1:8001/forecast/$symbol";
+
+        $response = Http::get($url);
+
+        if ($response->failed()) {
+            return response()->json(["error" => "Python API not reachable"], 500);
+        }
+
+        return $response->json();
     }
 }
