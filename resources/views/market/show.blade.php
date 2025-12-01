@@ -186,14 +186,13 @@
                 .then(res => res.json())
                 .then(data => {
 
-                    const relativeMidPoint = 140;
-                    const scaleFactor = 0.00125;
+                    let absolutePrices = data.c;
 
-                    const absolutePrices = data.c.map(relativeValue => {
-                        const difference = relativeValue - relativeMidPoint;
-                        const priceChange = difference * scaleFactor;
-                        return currentPrice + priceChange;
-                    });
+                    // Validasi sederhana: Jika data kosong atau error, buat array kosong agar tidak crash
+                    if (!absolutePrices || !Array.isArray(absolutePrices)) {
+                        console.warn('Data harga tidak valid atau kosong');
+                        absolutePrices = [];
+                    }
 
                     const labels = data.t.map(t => {
                         const date = new Date(t * 1000);
