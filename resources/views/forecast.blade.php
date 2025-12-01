@@ -22,9 +22,37 @@
         </div>
 
 
-        <div class="bg-gray-900 rounded-lg p-6 mb-6 h-96 flex items-center justify-center">
+        <div class="bg-gray-900 rounded-lg p-6 mb-6 h-96 flex flex-col items-center justify-center relative">
             <canvas id="chart" class="w-full h-full"></canvas>
+
+            <!-- Disclaimer toggle button -->
+            <button id="toggle-disclaimer"
+                class="absolute top-4 right-4 bg-red-600 text-white px-3 py-1 rounded-lg font-semibold hover:bg-red-500 transition-colors">
+                ⚠️ Disclaimer
+            </button>
+
+            <!-- Disclaimer box -->
+            <div id="disclaimer" class="absolute top-16 right-4 w-72 bg-red-600 text-white text-sm rounded-lg shadow-lg p-3 hidden">
+                <p class="leading-tight text-xs sm:text-sm">
+                    ⚠️ <strong></strong> Forecasts are based on the ARIMA model using historical data. Accuracy varies by stock. Use this information for educational purposes only, do not make financial decisions solely based on this chart.
+                </p>
+                <button id="close-disclaimer" class="mt-2 bg-red-700 hover:bg-red-500 px-2 py-1 rounded text-xs font-semibold">Close</button>
+            </div>
         </div>
+
+        <script>
+            const toggleBtn = document.getElementById('toggle-disclaimer');
+            const disclaimerBox = document.getElementById('disclaimer');
+            const closeBtn = document.getElementById('close-disclaimer');
+
+            toggleBtn.addEventListener('click', () => {
+                disclaimerBox.classList.toggle('hidden');
+            });
+
+            closeBtn.addEventListener('click', () => {
+                disclaimerBox.classList.add('hidden');
+            });
+        </script>
 
 
     </div>
