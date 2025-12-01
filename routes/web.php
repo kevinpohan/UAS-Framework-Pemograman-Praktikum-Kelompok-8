@@ -103,7 +103,5 @@ Route::get('/forecast', function () {
 
 Route::get('/forecast/{symbol}', [StockController::class, 'forecast']);
 
-
-
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
