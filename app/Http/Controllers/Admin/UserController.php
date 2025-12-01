@@ -10,10 +10,23 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::orderBy('created_at', 'desc')->paginate(15);
-        return view('admin.users.index', compact('users'));
+        $sort = $request->input('sort', 'created_at');
+        $direction = $request->input('direction', 'desc');
+
+        $allowedSorts = ['name', 'email', 'role', 'balance', 'created_at'];
+        if (!in_array($sort, $allowedSorts)) {
+            $sort = 'created_at';
+        }
+
+        $direction = $direction === 'asc' ? 'asc' : 'desc';
+
+        $users = User::orderBy($sort, $direction)
+            ->paginate(15)
+            ->appends(['sort' => $sort, 'direction' => $direction]);
+
+        return view('admin.users.index', compact('users', 'sort', 'direction'));
     }
 
     public function create()
