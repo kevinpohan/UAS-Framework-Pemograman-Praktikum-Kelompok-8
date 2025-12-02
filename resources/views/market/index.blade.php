@@ -78,8 +78,8 @@
                     </div>
 
                     <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-400">Volume:
-                            <span x-text="Math.floor(Math.random()*90+10) + '.' + Math.floor(Math.random()*90+10) + 'M'"></span>
+                        <span class="text-sm text-gray-400">
+                            <!-- <span x-text="Math.floor(Math.random()*90+10) + '.' + Math.floor(Math.random()*90+10) + 'M'"></span> -->
                         </span>
 
                         <a :href="'/market/' + stock.id"
